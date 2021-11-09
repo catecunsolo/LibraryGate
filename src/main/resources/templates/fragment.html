@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<nav th:fragment="navbar" class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand logo" th:href="@{/}">L!braryGate</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mb-2 mb-md-0 w-100 d-flex justify-content-around">
+                <!-- ACA EMPIEZA EL NUEVO 'ITEM BOOK'-->
+                <!--DROPDOWN BOOKS-->
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="dropdown-book" role="button">
+                        BOOKS
+                    </a>
+                    <ul aria-labelledby="dropdown-book" class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                            <a class="dropdown-item" th:href="@{/book/get-all}">GET ALL</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/book/add}">ADD</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- FIN DEL NUEVO ITEM 'BOOK'-->
+                <!--DROPDOWN AUTHORS-->
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="dropdown-author" role="button">
+                        AUTHORS
+                    </a>
+                    <ul aria-labelledby="dropdown-author" class="dropdown-menu dropdown-menu-dark">
+                        <li>
+                            <a class="dropdown-item" th:href="@{/author/get-all}">GET ALL</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/author/add}">ADD</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--DROPDOWN EDITORIALS-->
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="dropdown-editorial" role="button">
+                        EDITORIALS
+                    </a>
+                    <ul aria-labelledby="dropdown-editorial" class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" th:href="@{/editorial/get-all}">GET ALL</a></li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/editorial/add}">ADD</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- DROPDOWN LOAN-->
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="dropdown-loans" role="button">
+                        LOANS
+                    </a>
+                    <ul aria-labelledby="dropdown-loans" class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" th:href="@{/loan/get-all}">GET ALL</a></li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/loan/add}">ADD</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- DROPDOWN CLIENTS-->
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       id="dropdown-clients" role="button">
+                        CLIENTS
+                    </a>
+                    <ul aria-labelledby="dropdown-clients" class="dropdown-menu dropdown-menu-dark">
+                        <li><a class="dropdown-item" th:href="@{/client/get-all}">GET ALL</a></li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/client/add}">ADD</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<footer th:fragment="footer" class="footer py-3 bg-dark fixed-bottom">
+    <div class="container d-flex justify-content-center">
+        <span class="text-muted">&copy; Caterina Cunsolo - 2021</span>
+    </div>
+</footer>
+
+<div th:fragment="div-error" th:if=${error!=null} class="alert alert-dismissible alert-danger mt-4 col-xl-6 text-align:center container" th:text="${error}"></div>
+<div th:fragment="div-success" th:if=${success!=null} class="alert alert-dismissible alert-success mt-4 col-xl-6 text-align:center container" th:text="${success}"></div>
+</html>

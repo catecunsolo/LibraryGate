@@ -1,0 +1,107 @@
+.logo{
+    padding: 2px 4px;
+    border: 1px double whitesmoke;
+    margin-inside: 3px;
+}
+
+.background-index {
+    background-image: url(images/books1.jpeg);
+}
+.background-editorial{
+    background-image: url("https://images.pexels.com/photos/2067569/pexels-photo-2067569.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940") ;
+}
+
+.form-div{
+    justify-content: left;
+}
+
+.background-book{
+    background-image: url("https://www.wallpapertip.com/wmimgs/75-753218_books-wallpaper-hd.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: .25;
+    moz-opacity: .25;
+    filter:alpha(opacity=25);
+    float: left;
+}
+
+.book-image{
+    max-width:100%;
+    max-height:100%;
+    justify-self: right;
+}
+
+.index-editorial {
+    background-image: url(https://www.wallpapertip.com/wmimgs/75-753218_books-wallpaper-hd.jpg);
+    background-position: right 25% center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 33%;
+    height: 200px;
+}
+
+@media (max-width: 992px) {
+    .index-editorial {
+        background-position: top;
+        width: 100%;
+        height: 500px;
+    }
+}
+
+.index-author {
+    background-image: url(https://cutewallpaper.org/21/wallpaper-of-book/Books-and-books-HD-wallpaper-Latest-Wallpapers-HD.jpg);
+    background-position: left 25% center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 33%;
+    height: 200px;
+}
+
+.index-book {
+    background-image: url(https://img1.goodfon.com/wallpaper/nbig/1/39/nastroeniya-kniga-knizhka-5644.jpg);
+    background-position: left 25% center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 33%;
+    height: 200px;
+}
+
+@media (max-width: 992px) {
+    .index-book {
+        background-position: top;
+        width: 100%;
+        height: 500px;
+    }
+}
+
+@media (max-width: 992px) {
+    .index-author {
+        background-position: top;
+        width: 100%;
+        height: 500px;
+    }
+}
+
+.clickable-card {
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.clickable-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 992px) {
+    .clickable-card:hover {
+        transform: scale(1.03);
+    }
+}
+
+.clickable-card > a {
+    color: black;
+}
+
+.main {
+    margin-bottom: 4.5rem !important;
+}
