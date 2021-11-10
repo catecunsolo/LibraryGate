@@ -41,7 +41,9 @@ public class ClientService {
     public List<Client>findAll(){ return clientRepository.findAll();}
 
     @Transactional
-    public void edit(String id, String name, String surname, String phoneNumber){
+    public void edit(String id, String name, String surname, String phoneNumber) throws Exception {
+        checkName(name,surname);
+        checkPhone(phoneNumber);
         clientRepository.modify(id,name,surname,phoneNumber);
     }
 

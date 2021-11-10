@@ -6,7 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/author")
@@ -46,8 +50,12 @@ public class AuthorController {
     }
 
     @GetMapping("/get-all")
-    public ModelAndView getAuthors() {
+    public ModelAndView getAuthors(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("author");
+        Map<String, ?> map = RequestContextUtils.getInputFlashMap(request);
+        if(map!=null){
+            modelAndView.addObject("error", map.get("error"));
+        }
         modelAndView.addObject("authors", authorService.findAll());
         return modelAndView;
     }

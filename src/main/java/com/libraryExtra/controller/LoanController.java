@@ -64,7 +64,6 @@ public class LoanController {
             }
         }catch(Exception e){
             a.addFlashAttribute("error", "Error de/activating loan --> "+e.getMessage());
-
         }
         return new RedirectView("/loan/get-all");
     }

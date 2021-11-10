@@ -80,15 +80,12 @@ public class BookService {
     }
 
     public void validate(Long isbn, String title, Integer year, Integer copies, Integer copiesLeft ) throws Exception{
+        validateIsbn(isbn);
         if(isbn==null||title==null||title.trim().isEmpty()||year==null||copies==null||copiesLeft==null){
             throw new Exception("No empty fields allowed.");
         }
-        validateIsbn(isbn);
         if(copiesLeft>copies){
             throw new Exception("Check number of copies/copies left.");
-        }
-        if(bookRepository.findBookByIsbn(isbn)!=null){
-            throw new Exception("A book with this isbn already exists.");
         }
         if(year>2022){
             throw new Exception("Check the year of release.");
@@ -96,9 +93,15 @@ public class BookService {
     }
 
     public void validateIsbn(Long isbn) throws Exception{
-      boolean isLong = isbn.toString().chars().allMatch(Character :: isDigit);
+   boolean isLong = isbn.toString().chars().allMatch(Character :: isDigit);
       if(isLong==false){
           throw new Exception ("The isbn must not contain letters.");
       }
+        if (!isbn.toString().matches("[0-9]+")){
+            throw new Exception ("The isbn must contain numbers only.");
+        }
+        if(bookRepository.findBookByIsbn(isbn)!=null){
+            throw new Exception("A book with this isbn already exists.");
+        }
     }
 }

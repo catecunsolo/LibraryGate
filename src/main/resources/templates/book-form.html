@@ -28,7 +28,7 @@
                   novalidate th:action="@{/book/__${action}__}" th:object="${book}">
                 <input type="hidden" th:field="*{id}"/> <!-- TENER EN CUENTA PARA EDITAR-->
                 <div class="form-floating mb-3 col-xl-6">
-                    <input class="form-control" id="isbn" placeholder="isbn" required th:field="*{isbn}" type="text"/>
+                    <input class="form-control" id="isbn" placeholder="isbn" required th:field="*{isbn}" type="number"/>
                     <label for="isbn">Isbn</label>
                     <div class="invalid-feedback">There must be an isbn.</div>
                 </div>
