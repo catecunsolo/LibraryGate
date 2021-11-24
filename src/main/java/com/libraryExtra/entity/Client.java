@@ -2,7 +2,6 @@ package com.libraryExtra.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
-import java.util.Comparator;
 
 @Entity
 public class Client {
@@ -16,15 +15,19 @@ public class Client {
     private String phoneNumber;
     @Column(columnDefinition = "TINYINT(1)")
     private Boolean available;
+    @OneToOne
+    private UserLogin user;
+
 /*@OneToMany(mappedBy = "client")
 private List <Loan> loans;*/
 
-    public Client(String id, Long dni, String name, String surname, String phoneNumber) {
+    public Client(String id, Long dni, String name, String surname, String phoneNumber, UserLogin user) {
         this.dni = dni;
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
         this.id=id;
+        this.user=user;
     }
 
     public Client() {
@@ -78,6 +81,14 @@ private List <Loan> loans;*/
         this.available = available;
     }
 
+    public UserLogin getUser() {
+        return user;
+    }
+
+    public void setUser(UserLogin user) {
+        this.user = user;
+    }
+
 /*    public List<Loan> getLoans() {
         return loans;
     }
@@ -85,10 +96,4 @@ private List <Loan> loans;*/
     public void setLoans(List<Loan> loans) {
         this.loans = loans;
     }*/
-public static Comparator<Client> compareName = new Comparator<Client>() {
-    @Override
-    public int compare(Client client1, Client client2) {
-        return client1.getName().compareToIgnoreCase(client2.getName());
-    }
-    };
 }

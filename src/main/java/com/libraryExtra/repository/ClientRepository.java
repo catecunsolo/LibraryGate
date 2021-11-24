@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface ClientRepository extends JpaRepository<Client,String> {
 
@@ -19,7 +21,6 @@ public interface ClientRepository extends JpaRepository<Client,String> {
     @Modifying
     @Query("UPDATE Client c SET c.name = :name, c.surname = :surname, c.phoneNumber = :phoneNumber WHERE c.id = :id")
     void modify(@Param("id") String id, @Param("name") String name, @Param("surname") String surname, @Param("phoneNumber") String phoneNumber);
-
 
 }
 

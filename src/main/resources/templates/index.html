@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <meta content="ie=edge" http-equiv="X-UA-Compatible"/>
-    <meta content="Caterina Cunsolo" name="index"/>
+    <meta content="Caterina Cunsolo" name="author"/>
     <!--<title th:text="|${title} - Library|"></title>-->
     <title>L!BraryGate</title>
     <!-- CSS -->
@@ -64,6 +64,8 @@
         </div>
     </div>
 </div>
+
+<a th:href="@{/logout}" class="btn-flotante">Log-out</a>
 
 <footer th:replace="fragment :: footer"></footer>
 

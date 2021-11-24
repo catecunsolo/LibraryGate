@@ -3,6 +3,7 @@ package com.libraryExtra.controller;
 import com.libraryExtra.entity.Author;
 import com.libraryExtra.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -30,6 +31,7 @@ public class AuthorController {
     }*/
 
     @GetMapping("/add")
+    @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView addAuthor(){
         ModelAndView modelAndView = new ModelAndView("author-form");
         modelAndView.addObject("author",new Author());
@@ -39,14 +41,17 @@ public class AuthorController {
     }
 
     @PostMapping("/save")
+    @PreAuthorize("hasRole('ADMIN')")
     public RedirectView save(@RequestParam String name, RedirectAttributes a) throws Exception{
+        RedirectView redirectView = new RedirectView("/author/get-all");
         try {
             authorService.createAuthor(name);
             a.addFlashAttribute("success","Author added successfully.");
         }catch(Exception e) {
             a.addFlashAttribute("error","Error saving author  --> "+e.getMessage());
+            redirectView.setUrl("/author/add");
         }
-        return new RedirectView("/author/get-all");
+        return redirectView ;
     }
 
     @GetMapping("/get-all")
@@ -61,6 +66,7 @@ public class AuthorController {
     }
 
     @PostMapping("/edit")
+    @PreAuthorize("hasRole('ADMIN')")
     public RedirectView edit(@RequestParam Integer id, @RequestParam String name){
         //authorService.editName(authorService.findAuthor(id), name);
         authorService.edit(id,name);
@@ -68,6 +74,7 @@ public class AuthorController {
     }
 
     @GetMapping("/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ModelAndView editAuthor(@PathVariable Integer id){
         ModelAndView modelAndView = new ModelAndView("author-form");
         modelAndView.addObject("author",authorService.findAuthor(id));
@@ -77,12 +84,14 @@ public class AuthorController {
     }
 
     @PostMapping("/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public RedirectView delete(@PathVariable Integer id){
         authorService.delete(id);
         return new RedirectView("/author/get-all");
     }
 
     @PostMapping("/deActivate/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public RedirectView deActivate(@PathVariable Integer id){
         authorService.deActivate(id);
         return new RedirectView("/author/get-all");
